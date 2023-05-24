@@ -1,0 +1,126 @@
+class Edge:
+    def __init__(self, src, dest):
+        self.src = src
+        self.dest = dest
+def create_graph():
+    num_vertices = int(input("Enter the number of vertices: "))
+    graph = [[] for _ in range(num_vertices)]
+
+    num_edges = int(input("Enter the number of edges: "))
+
+    print("Enter the edges (source and destination):")
+    for _ in range(num_edges):
+        source = int(input())
+        destination = int(input())
+        graph[source].append(Edge(source, destination))
+        graph[destination].append(Edge(destination, source))
+
+    return graph
+def graph_coloring(graph):
+    num_vertices = len(graph)
+    result = [0] * num_vertices
+
+    # Array to track the available colors for each vertex
+    available_colors = [True] * num_vertices
+    min_colors = 0
+
+    # Color the first vertex with color 1
+    result[0] = 1
+
+    # Assign colors to the remaining vertices
+    for v in range(1, num_vertices):
+        # Reset the available colors array
+        available_colors = [True] * num_vertices
+
+        # Check the adjacent vertices and mark their colors as unavailable
+        for edge in graph[v]:
+            if result[edge.dest] != 0:
+                available_colors[result[edge.dest] - 1] = False
+
+        # Find the first available color
+        color = 0
+        while color < num_vertices:
+            if available_colors[color]:
+                break
+            color += 1
+
+        # Assign the color to the current vertex
+        result[v] = color + 1
+
+        # Update the minimum number of colors
+        min_colors = max(min_colors, color + 1)
+
+    return min_colors
+
+
+# Create the graph
+graph = create_graph()
+
+# Perform graph coloring to find the minimum number of colors
+min_colors = graph_coloring(graph)
+
+# Print the minimum number of colors required
+print("Minimum number of colors required:", min_colors)
+class Edge:
+    def __init__(self, src, dest):
+        self.src = src
+        self.dest = dest
+def create_graph():
+    num_vertices = int(input("Enter the number of vertices: "))
+    graph = [[] for _ in range(num_vertices)]
+
+    num_edges = int(input("Enter the number of edges: "))
+
+    print("Enter the edges (source and destination):")
+    for _ in range(num_edges):
+        source = int(input())
+        destination = int(input())
+        graph[source].append(Edge(source, destination))
+        graph[destination].append(Edge(destination, source))
+
+    return graph
+def graph_coloring(graph):
+    num_vertices = len(graph)
+    result = [0] * num_vertices
+
+    # Array to track the available colors for each vertex
+    available_colors = [True] * num_vertices
+    min_colors = 0
+
+    # Color the first vertex with color 1
+    result[0] = 1
+
+    # Assign colors to the remaining vertices
+    for v in range(1, num_vertices):
+        # Reset the available colors array
+        available_colors = [True] * num_vertices
+
+        # Check the adjacent vertices and mark their colors as unavailable
+        for edge in graph[v]:
+            if result[edge.dest] != 0:
+                available_colors[result[edge.dest] - 1] = False
+
+        # Find the first available color
+        color = 0
+        while color < num_vertices:
+            if available_colors[color]:
+                break
+            color += 1
+
+        # Assign the color to the current vertex
+        result[v] = color + 1
+
+        # Update the minimum number of colors
+        min_colors = max(min_colors, color + 1)
+
+    return min_colors
+
+
+# Create the graph
+graph = create_graph()
+
+# Perform graph coloring to find the minimum number of colors
+min_colors = graph_coloring(graph)
+
+# Print the minimum number of colors required
+print("Minimum number of colors required:", min_colors)

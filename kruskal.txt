@@ -1,0 +1,27 @@
+def kruskal(graph):
+    edges=[(cost,frm,to) for frm in graph for to,cost in graph[frm].items()]
+    edges.sort()
+    mst=[]
+    component={v:v for v in graph}
+    for cost,frm,to in edges:
+        if component[frm]!=component[to]:
+            mst.append((cost,frm,to))
+            old_component=component[to]
+            new_component=component[frm]
+            for v in component:
+                if component[v] ==old_component :
+                    component[v]=new_component
+    return mst
+graph = {}
+vertex_count = int(input("Enter the number of vertices: "))
+for i in range(vertex_count):
+    vertex = input("Enter vertex: ")
+    neighbors_count = int(input(f"Enter the number of neighbors for vertex {vertex}: "))
+    neighbors = {}
+    for j in range(neighbors_count):
+        neighbor = input(f"Enter neighbor {j+1}: ")
+        cost = int(input(f"Enter cost for the edge ({vertex} - {neighbor}): "))
+        neighbors[neighbor] = cost
+    graph[vertex] = neighbors
+print(graph)
+print(kruskal(graph))

@@ -1,0 +1,14 @@
+from datetime import datetime
+pairs={
+    "Hello":"hi how are you",
+    "how are you":"good,how are you",
+    "bye":"bye have a good day",
+    "what is time":datetime.now()
+}
+print("how can i help you !")
+while(True):
+    x=input()
+    if x in pairs.keys():
+        print(pairs[x])
+    else:
+        print("incorrect input")

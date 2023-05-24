@@ -1,0 +1,38 @@
+def JobScheduling(arr, t):# t is the time slots available
+    n = len(arr) # array length
+
+    for i in range(n):
+        for j in range(n - 1 - i):
+            if arr[j][2] < arr[j + 1][2]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    print(arr)
+
+    result = [False] * t   #afree slots
+    job = ['-1'] * t
+    for i in range(len(arr)):
+        for j in range(min(t - 1, arr[i][1] - 1)+1):   #from last slot
+
+            if result[j] is False:   # Free slot
+                result[j] = True
+                job[j] = arr[i][0]
+                break
+
+    print(job)
+
+if __name__ == '__main__':
+    arr = [['a', 2, 100], ['b', 1, 19],['c', 2, 27],['d', 1, 25],['e', 3, 15]]
+    #arr = []
+
+    #for i in range(5):
+        #l=[]
+        #x = input("enter job name")
+        #y = int(input())#deadline
+        #z = int(input())#profit
+        #l.append(x)
+        #l.append(y)
+        #l.append(z)
+        #arr.append(l)
+    #print(arr)
+
+    print("Following is maximum profit sequence of jobs")
+    JobScheduling(arr, 3 )
